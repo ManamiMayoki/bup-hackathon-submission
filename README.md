@@ -44,22 +44,12 @@ Ensure you have the following installed on your development machine:
 
 ## Environment Configuration
 
-1. Copy the example environment file and configure your API key:
+Copy the example environment file and configure your API key:
 
 ```bash
 cp .env.example .env
 
 ```
-
-2. Open `.env` and set your OpenRouter API key:
-
-```env
-OPENROUTER_API_KEY=your_openrouter_api_key_here
-PORT=3000
-
-```
-
----
 
 ## Running for Development
 
@@ -123,8 +113,8 @@ curl -s http://localhost:3000/health
 | `OPENROUTER_API_KEY` | **Yes** | OpenRouter API key for live interpretation |
 | `PORT` | No (default `3000`) | Server listen port |
 
-* **Model and Provider:** OpenRouter `deepseek/deepseek-v4-flash-0731:free`, reasoning enabled, pinned to `open-inference/fp8`, no provider fallbacks. Called over the OpenAI-compatible `POST /api/v1/chat/completions` endpoint with `response_format: json_object` and `temperature: 0.0`.
-* **Timing:** The LLM call has an 18-second timeout inside a 20-second request budget, against the judge limit of 30 seconds. Interpretations are cached (TTL 300s success, 60s failure, 100 keys) and one bounded retry is attempted on `429` or `503`.
+* **Model and Provider:** OpenRouter `deepseek/deepseek-v4.1-flash`, reasoning enabled, pinned to `open-inference/fp8`, no provider fallbacks. Called over the OpenAI-compatible `POST /api/v1/chat/completions` endpoint with `response_format: json_object` and `temperature: 0.0`.
+* **Caching:** Interpretations are cached (TTL 300s success, 60s failure, 100 keys).
 
 ---
 
@@ -133,7 +123,7 @@ curl -s http://localhost:3000/health
 ### 1. Health Check
 
 * **Method:** `GET`
-* **Path:** `/health`
+* **Path:** `http://20.196.201.41/health`
 * **Success Response (`200 OK`):**
 
 ```json
@@ -144,7 +134,7 @@ curl -s http://localhost:3000/health
 ### 2. Optimize Energy
 
 * **Method:** `POST`
-* **Path:** `/optimize-energy`
+* **Path:** `http://20.196.201.41/optimize-energy`
 * **Purpose:** Accepts one scenario object, returns the interpretation plus the 24-hour plan.
 
 #### Sample Request
