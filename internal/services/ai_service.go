@@ -111,7 +111,7 @@ OTHER RULES:
   Resolve paraphrases to the same directive type.`
 
 const (
-	modelName = "deepseek/deepseek-v4-flash-0731:free"
+	modelName = "deepseek/deepseek-v4.1-flash"
 
 	baseURL  = "https://openrouter.ai/api/v1"
 	cacheTTL = 300 * time.Second
@@ -381,12 +381,12 @@ func callLLM(ctx context.Context, key string, req EnergyRequest) ([]DirectiveInt
 			{Role: "user", Content: buildUserMessage(req)},
 		},
 		"temperature": 0.0,
-		"max_tokens":  2048,
+		"max_tokens":  4096,
 		"reasoning": map[string]bool{
 			"enabled": true,
 		},
 		"provider": map[string]any{
-			"only":            []string{"open-inference/fp8"},
+			"only":            []string{"deepseek"},
 			"allow_fallbacks": false,
 		},
 	}
