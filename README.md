@@ -123,8 +123,8 @@ curl -s http://localhost:3000/health
 | `OPENROUTER_API_KEY` | **Yes** | OpenRouter API key for live interpretation |
 | `PORT` | No (default `3000`) | Server listen port |
 
-* **Model and Provider:** OpenRouter `deepseek/deepseek-v4-flash-0731:free`, reasoning enabled, pinned to `open-inference/fp8`, no provider fallbacks. Called over the OpenAI-compatible `POST /api/v1/chat/completions` endpoint with `response_format: json_object` and `temperature: 0.0`.
-* **Timing:** The LLM call has an 18-second timeout inside a 20-second request budget, against the judge limit of 30 seconds. Interpretations are cached (TTL 300s success, 60s failure, 100 keys) and one bounded retry is attempted on `429` or `503`.
+* **Model and Provider:** OpenRouter `deepseek/deepseek-v4.1-flash`, reasoning enabled, pinned to `open-inference/fp8`, no provider fallbacks. Called over the OpenAI-compatible `POST /api/v1/chat/completions` endpoint with `response_format: json_object` and `temperature: 0.0`.
+* **Caching:** Interpretations are cached (TTL 300s success, 60s failure, 100 keys).
 
 ---
 
