@@ -225,7 +225,7 @@ curl -s http://localhost:3000/optimize-energy \
 
 > **Important Conventions:**
 > * A window from **1 PM to 3 PM** corresponds to hours `[13, 14]` (start included, end excluded).
-> * For `solar_reduction`, the `factor` represents the remaining fraction (e.g., an 80% reduction means a factor of `0.2`).
+> * For `solar_reduction`, the `factor` represents the remaining fraction (e.g.an 80% reduction means a factor of `0.2`).
 > 
 > 
 
